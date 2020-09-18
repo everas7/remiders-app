@@ -1,0 +1,53 @@
+body {
+  background-color: rgb(234, 234, 234) !important;
+}
+
+.navbar.navbar-expand-md {
+  background: #0f2027; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #2c5364,
+    #203a43,
+    #0f2027
+  ) !important;
+  background: linear-gradient(to right, #2c5364, #203a43, #0f2027) !important;
+}
+
+/*home page styles*/
+
+.masthead {
+  display: flex;
+  align-items: center;
+  background: #0f2027; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #2c5364,
+    #203a43,
+    #0f2027
+  ) !important;
+  background: linear-gradient(to right, #2c5364, #203a43, #0f2027) !important;
+  height: 100vh;
+}
+
+.masthead h1 {
+  font-size: 4em;
+  font-weight: normal;
+  color: #fff;
+}
+
+.masthead h1 img {
+  margin-right: 10px;
+}
+
+.masthead h2 {
+  font-size: 1.7em;
+  font-weight: normal;
+  color: #fff;
+  margin-bottom: 20px;
+}
+
+/*end home page styles*/
+
+.pointer {
+  cursor: pointer;
+}
