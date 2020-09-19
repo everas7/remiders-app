@@ -1,6 +1,6 @@
 import React from 'react';
 import './CalendarItem.css';
-import { Col } from 'react-bootstrap';
+import { Col, Button } from 'react-bootstrap';
 
 interface Props {
   inverted?: boolean;
@@ -21,6 +21,7 @@ export const CalendarItem: React.FC<Props> = ({
       <div className="calendar-item__header">{children}</div>
       <div className="calendar-item__content">
         <div className="calendar-item__reminder"></div>
+        <Button variant="info" className="add-reminder">Add Reminder</Button>
       </div>
     </Col>
   );
