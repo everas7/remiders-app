@@ -1,0 +1,43 @@
+.calendar-item {
+  border: 1px gray solid;
+  background-color: #f6f6f6;
+  display: flex;
+  flex-direction: column;
+  min-height: 120px;
+}
+
+.calendar-item--inverted {
+  background-color: #ebecf1;
+}
+
+.calendar-item--inverted .calendar-item__header {
+  color: #3282b8;
+}
+
+.calendar-item--disabled .calendar-item__header {
+  color: #c0c0c0;
+}
+
+.calendar-item__header {
+  height: 30px;
+  font-weight: bold;
+}
+
+.calendar-item__content {
+  flex: 1;
+  flex-direction: column;
+}
+
+.add-reminder {
+  position: absolute;
+  padding: 0 10px;
+  bottom: 4px;
+  border-radius: 24px;
+  text-align: center;
+  box-shadow: 2px 2px 3px #999;
+  visibility: hidden;
+}
+
+.calendar-item:hover .add-reminder {
+  visibility: visible;
+}
