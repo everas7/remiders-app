@@ -1,12 +1,8 @@
-import React from 'react';
+import React, {MouseEvent} from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { CalendarItem } from './calendar-item/CalendarItem';
 import { CalendarHeader } from './calendar-header/CalendarHeader';
-import {
-  daysInMonth,
-  isWeekend,
-  isSameMonth,
-} from '../../helpers/date-helper';
+import { daysInMonth, isWeekend, isSameMonth } from '../../helpers/date-helper';
 
 const DAYS_PER_ROW = 7;
 
@@ -35,7 +31,11 @@ export const getCalendarMonth = (
   return calendar;
 };
 
-export const Calendar = () => {
+interface Props {
+  onItemClick: (event: MouseEvent<HTMLDivElement, globalThis.MouseEvent>, date: Date) => void;
+}
+
+export const Calendar: React.FC<Props> = ({ onItemClick }) => {
   const currentDate = new Date();
   const calendarMonth: CalendarMonth = getCalendarMonth(
     currentDate.getMonth(),
@@ -44,12 +44,14 @@ export const Calendar = () => {
   return (
     <Container fluid>
       <CalendarHeader />
-      {calendarMonth.map((week) => (
-        <Row>
-          {week.map((date) => (
+      {calendarMonth.map((week, weekIndex) => (
+        <Row key={weekIndex}>
+          {week.map((date, dayIndex) => (
             <CalendarItem
+              key={weekIndex + dayIndex}
               inverted={isWeekend(date)}
               disabled={!isSameMonth(date, currentDate)}
+              onClick={(e) => onItemClick(e, date)}
             >
               {date.getDate()}
             </CalendarItem>

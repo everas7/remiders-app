@@ -1,13 +1,18 @@
 .calendar-item {
-  border: 1px gray solid;
-  background-color: #f6f6f6;
+  background-color: #ffffff;
   display: flex;
   flex-direction: column;
   min-height: 120px;
+  border-top: 0.5px #F0F3F9 solid;
 }
 
+.calendar-item:not(:last-child) {
+  border-right: 0.5px #F0F3F9 solid;
+}
+
+
 .calendar-item--inverted {
-  background-color: #ebecf1;
+  background-color: #ffffff;
 }
 
 .calendar-item--inverted .calendar-item__header {
@@ -15,12 +20,14 @@
 }
 
 .calendar-item--disabled .calendar-item__header {
-  color: #c0c0c0;
+  color: #BCBFC5;
 }
 
 .calendar-item__header {
   height: 30px;
   font-weight: bold;
+  color:#8C8D91;
+  cursor: default;
 }
 
 .calendar-item__content {
