@@ -7,6 +7,10 @@ interface Props {
   inverted?: boolean;
   disabled?: boolean;
   onClick: (event: MouseEvent<HTMLDivElement, globalThis.MouseEvent>) => void;
+  onClickReminder: (
+    event: MouseEvent<HTMLDivElement, globalThis.MouseEvent>,
+    reminder: Reminder
+  ) => void;
   reminders?: Reminder[];
 }
 
@@ -15,6 +19,7 @@ export const CalendarItem: React.FC<Props> = ({
   children,
   disabled = false,
   onClick,
+  onClickReminder,
   reminders = [],
 }) => {
   return (
@@ -38,6 +43,7 @@ export const CalendarItem: React.FC<Props> = ({
           .map((reminder) => (
             <div
               className="calendar-item__reminder"
+              onClick={(e) => onClickReminder(e, reminder)}
               style={{
                 borderColor: reminder.color || '#FF6900',
                 backgroundColor:

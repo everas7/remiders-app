@@ -51,3 +51,7 @@ body {
 .pointer {
   cursor: pointer;
 }
+
+.italic {
+  font-style: italic;
+}
