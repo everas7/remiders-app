@@ -38,15 +38,20 @@ interface Props {
     date: Date
   ) => void;
   reminderPreview?: Partial<Reminder>;
+  reminders: Reminder[];
 }
 
-export const Calendar: React.FC<Props> = ({ onItemClick, reminderPreview }) => {
+export const Calendar: React.FC<Props> = ({
+  onItemClick,
+  reminderPreview,
+  reminders,
+}) => {
   const currentDate = new Date();
   const calendarMonth: CalendarMonth = getCalendarMonth(
     currentDate.getMonth(),
     currentDate.getFullYear()
   );
-    console.log(reminderPreview, 'veamos')
+
   return (
     <Container fluid>
       <CalendarHeader />
@@ -59,8 +64,15 @@ export const Calendar: React.FC<Props> = ({ onItemClick, reminderPreview }) => {
               disabled={!isSameMonth(date, currentDate)}
               reminders={
                 reminderPreview?.date?.toDateString() === date.toDateString()
-                  ? [reminderPreview as Reminder]
-                  : []
+                  ? [
+                      ...reminders.filter(
+                        (r) => r.date.toDateString() === date.toDateString()
+                      ),
+                      reminderPreview as Reminder,
+                    ]
+                  : reminders.filter(
+                      (r) => r.date.toDateString() === date.toDateString()
+                    )
               }
               onClick={(e) => onItemClick(e, date)}
             >

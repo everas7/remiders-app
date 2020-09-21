@@ -1,17 +1,22 @@
 import React, { useState } from 'react';
-import { Form, Container, Row, Col, FormGroup } from 'react-bootstrap';
+import { Form, Container, Row, Col, FormGroup, Button } from 'react-bootstrap';
 import { InputText } from '../../../app/common/input-text/InputText';
 import { InputSelect } from '../../../app/common/input-select/InputSelect';
 import { InputTime } from '../../../app/common/input-time/InputTime';
 import { ColorPicker } from '../../../app/common/color-picker/ColorPicker';
 import weatherApi from '../../../app/api/weather-api';
 import { ColorResult } from 'react-color';
+import { Reminder } from '../../../app/models/reminder';
 
-export const RemindersForm = () => {
+interface Props {
+  onSubmit: (reminder: Partial<Reminder>) => void;
+}
+
+export const RemindersForm: React.FC<Props> = ({ onSubmit }) => {
   const cities = weatherApi.Cities.list();
 
   const [form, setForm] = useState({
-    reminder: {
+    description: {
       value: '',
       valid: false,
       validators: [],
@@ -31,11 +36,11 @@ export const RemindersForm = () => {
     },
   });
 
-  const handleReminderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleDescriptionChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({
       ...form,
-      reminder: {
-        ...form.reminder,
+      description: {
+        ...form.description,
         value: e.target.value,
       },
     });
@@ -66,8 +71,17 @@ export const RemindersForm = () => {
       ...form,
       color: {
         ...form.color,
-        value: color.hex,
+        value: `rgb(${color.rgb.r},${color.rgb.g},${color.rgb.b})`,
       },
+    });
+  };
+
+  const handleSubmit = () => {
+    onSubmit({
+      description: form.description.value,
+      city: form.city.value!,
+      time: form.time.value,
+      color: form.color.value,
     });
   };
 
@@ -76,8 +90,8 @@ export const RemindersForm = () => {
       <Row>
         <FormGroup as={Col} md="12" style={{ marginTop: '1rem' }}>
           <InputText
-            value={form.reminder.value}
-            onChange={handleReminderChange}
+            value={form.description.value}
+            onChange={handleDescriptionChange}
             placeholder="Reminder"
           />
         </FormGroup>
@@ -98,6 +112,12 @@ export const RemindersForm = () => {
         <FormGroup as={Col} md="12">
           <ColorPicker onChange={handleColorChange} color={form.color.value} />
         </FormGroup>
+
+        <Col md="12" className="justify-content-left">
+          <Button variant="primary" type="submit" onClick={handleSubmit}>
+            Save
+          </Button>
+        </Col>
       </Row>
     </Form>
   );
