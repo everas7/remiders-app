@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Form, Container, Row, Col, FormGroup } from 'react-bootstrap';
 import { InputText } from '../../../app/common/input-text/InputText';
 import { InputSelect } from '../../../app/common/input-select/InputSelect';
+import { InputTime } from '../../../app/common/input-time/InputTime';
 import weatherApi from '../../../app/api/weather-api';
 
 export const RemindersForm = () => {
@@ -17,6 +18,10 @@ export const RemindersForm = () => {
       value: null,
       valid: false,
       validators: [],
+    },
+    time: {
+      value: '',
+      valid: false,
     },
   });
 
@@ -40,6 +45,16 @@ export const RemindersForm = () => {
     });
   };
 
+  const handleTimeChange = (value: string) => {
+    setForm({
+      ...form,
+      time: {
+        ...form.time,
+        value,
+      },
+    });
+  };
+
   return (
     <Form as={Container}>
       <Row>
@@ -59,6 +74,12 @@ export const RemindersForm = () => {
             value={form.city.value}
             onChange={handleCityChange}
             placeholder="City"
+          />
+        </FormGroup>
+        <FormGroup as={Col} md="12">
+          <InputTime
+            onChange={handleTimeChange}
+            value={form.time.value}
           />
         </FormGroup>
       </Row>
