@@ -12,7 +12,11 @@ export const addReminder = (reminder: Reminder) => {
   return typedAction('reminders/ADD_REMINDER', { reminder });
 };
 
-type ReminderAction = ReturnType<typeof addReminder>;
+export const updateReminder = (reminder: Reminder) => {
+  return typedAction('reminders/UPDATE_REMINDER', { reminder });
+};
+
+type ReminderAction = ReturnType<typeof addReminder | typeof updateReminder>;
 
 export function remindersReducer(
   state = initialState,
@@ -23,6 +27,15 @@ export function remindersReducer(
       return {
         ...state,
         list: [...state.list, action.payload.reminder],
+      };
+    case 'reminders/UPDATE_REMINDER':
+      return {
+        ...state,
+        list: state.list.map((reminder) =>
+          reminder.date === action.payload.reminder.date
+            ? action.payload.reminder
+            : reminder
+        ),
       };
     default:
       return state;

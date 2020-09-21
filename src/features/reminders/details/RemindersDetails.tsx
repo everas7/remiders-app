@@ -6,9 +6,13 @@ import './RemindersDetails.css';
 
 interface Props {
   reminder: Reminder;
+  onClickEdit: () => void;
 }
 
-export const RemindersDetails: React.FC<Props> = ({ reminder }) => {
+export const RemindersDetails: React.FC<Props> = ({
+  reminder,
+  onClickEdit,
+}) => {
   return (
     <Container>
       <Row>
@@ -17,7 +21,13 @@ export const RemindersDetails: React.FC<Props> = ({ reminder }) => {
             <h4 className="reminder-details__header">{reminder.description}</h4>
             {reminder.city.city}
           </div>
-          <Button variant="info" className="reminder-details__edit-button">Edit</Button>
+          <Button
+            variant="info"
+            className="reminder-details__edit-button"
+            onClick={onClickEdit}
+          >
+            Edit
+          </Button>
         </Col>
         <Col md="12" className="reminder-details__content">
           <div>

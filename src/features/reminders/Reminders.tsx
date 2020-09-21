@@ -5,13 +5,17 @@ import { RemindersForm } from './form/RemindersForm';
 import { RemindersDetails } from './details/RemindersDetails';
 import { Reminder } from '../../app/models/reminder';
 import { useSelector } from 'react-redux';
-import { remindersListSelector } from '../../app/store/features/reminders';
+import {
+  remindersListSelector,
+  updateReminder,
+} from '../../app/store/features/reminders';
 import { useDispatch } from 'react-redux';
 import { addReminder } from '../../app/store/features/reminders';
 import weatherApi from '../../app/api/weather-api';
 
 export const Reminders = () => {
   const [show, setShow] = useState(false);
+  const [editMode, setEditMode] = useState(false);
   const [target, setTarget] = useState<EventTarget>();
   const [reminderPreview, setReminderPreview] = useState<Partial<Reminder>>();
   const [currentReminder, setCurrentReminder] = useState<Reminder>();
@@ -47,8 +51,13 @@ export const Reminders = () => {
     }
   };
 
+  const handleClickEdit = () => {
+    setEditMode(true);
+  };
+
   const handleClose = () => {
     setShow(false);
+    setEditMode(false);
     setTarget(undefined);
     setReminderPreview(undefined);
     setCurrentReminder(undefined);
@@ -58,15 +67,18 @@ export const Reminders = () => {
     const forecasts = await weatherApi.Weather.getForecastByCity(
       reminder.city!
     );
+    let date = reminder?.date || reminderPreview?.date;
     reminder.weather = forecasts?.daily?.filter(
-      (w: any) =>
-        new Date(w.dt * 1000).toDateString() ===
-        reminderPreview?.date?.toDateString()
+      (w: any) => new Date(w.dt * 1000).toDateString() === date?.toDateString()
     )[0]?.weather[0]?.description;
+    if (!editMode) {
+      dispatch(
+        addReminder({ ...(reminder as Reminder), date: reminderPreview?.date! })
+      );
+    } else {
+      dispatch(updateReminder(reminder as Reminder));
+    }
 
-    dispatch(
-      addReminder({ ...(reminder as Reminder), date: reminderPreview?.date! })
-    );
     handleClose();
   };
 
@@ -89,10 +101,16 @@ export const Reminders = () => {
       >
         <Popover id="popover-contained">
           <Popover.Content>
-            {currentReminder ? (
-              <RemindersDetails reminder={currentReminder} />
+            {currentReminder && !editMode ? (
+              <RemindersDetails
+                reminder={currentReminder}
+                onClickEdit={handleClickEdit}
+              />
             ) : (
-              <RemindersForm onSubmit={handleSubmit} />
+              <RemindersForm
+                reminder={currentReminder}
+                onSubmit={handleSubmit}
+              />
             )}
           </Popover.Content>
         </Popover>

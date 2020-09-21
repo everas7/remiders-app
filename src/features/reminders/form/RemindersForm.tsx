@@ -10,28 +10,29 @@ import { Reminder } from '../../../app/models/reminder';
 
 interface Props {
   onSubmit: (reminder: Partial<Reminder>) => void;
+  reminder?: Reminder;
 }
 
-export const RemindersForm: React.FC<Props> = ({ onSubmit }) => {
+export const RemindersForm: React.FC<Props> = ({ onSubmit, reminder }) => {
   const cities = weatherApi.Cities.list();
 
   const [form, setForm] = useState({
     description: {
-      value: '',
+      value: reminder?.description ||  '',
       valid: false,
       validators: [],
     },
     city: {
-      value: null,
+      value: reminder?.city || null,
       valid: false,
       validators: [],
     },
     time: {
-      value: '',
+      value: reminder?.time || '',
       valid: false,
     },
     color: {
-      value: '',
+      value: reminder?.color || '',
       valid: false,
     },
   });
@@ -82,6 +83,7 @@ export const RemindersForm: React.FC<Props> = ({ onSubmit }) => {
       city: form.city.value!,
       time: form.time.value,
       color: form.color.value,
+      date: reminder?.date
     });
   };
 
@@ -102,7 +104,7 @@ export const RemindersForm: React.FC<Props> = ({ onSubmit }) => {
               value: city.city + city.state,
               label: city.city,
             }))}
-            value={form.city.value}
+            value={form.city.value as any}
             onChange={handleCityChange}
             placeholder="City"
           />

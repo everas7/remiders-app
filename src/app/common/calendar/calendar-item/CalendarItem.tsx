@@ -40,8 +40,9 @@ export const CalendarItem: React.FC<Props> = ({
               ) -
               new Date().setHours(+b.time.split(':')[0], +b.time.split(':')[1])
           )
-          .map((reminder) => (
+          .map((reminder, i) => (
             <div
+              key={reminder.date.toDateString() + i}
               className="calendar-item__reminder"
               onClick={(e) => onClickReminder(e, reminder)}
               style={{
