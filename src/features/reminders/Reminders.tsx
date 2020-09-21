@@ -44,9 +44,10 @@ export const Reminders = () => {
     );
     reminder.weather = forecasts?.daily?.filter(
       (w: any) =>
-        new Date(w.dt).toDateString() === reminderPreview?.date?.toDateString()
+        new Date(w.dt * 1000).toDateString() ===
+        reminderPreview?.date?.toDateString()
     )[0]?.weather[0]?.description;
-      console.log(reminder, 'veamos')
+
     dispatch(
       addReminder({ ...(reminder as Reminder), date: reminderPreview?.date! })
     );
