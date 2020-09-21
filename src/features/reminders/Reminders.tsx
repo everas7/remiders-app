@@ -26,6 +26,7 @@ export const Reminders = () => {
       setTarget(event.currentTarget);
       setReminderPreview({
         date,
+        time: '23:59'
       });
     }
   };

@@ -26,22 +26,35 @@ export const CalendarItem: React.FC<Props> = ({
     >
       <div className="calendar-item__header">{children}</div>
       <div className="calendar-item__content">
-        {reminders.map((reminder) => (
-          <div
-            className="calendar-item__reminder"
-            style={{
-              borderColor: reminder.color || '#FF6900',
-              backgroundColor:
-                (reminder.color || 'rgb(255, 105, 0)').slice(0, -1) + ', 0.3)',
-            }}
-          >
+        {reminders
+          .sort(
+            (a, b) =>
+              new Date().setHours(
+                +a.time.split(':')[0],
+                +a.time.split(':')[1]
+              ) -
+              new Date().setHours(+b.time.split(':')[0], +b.time.split(':')[1])
+          )
+          .map((reminder) => (
             <div
-              style={{ color: reminder.color || '#FF6900', fontWeight: 'bold' }}
+              className="calendar-item__reminder"
+              style={{
+                borderColor: reminder.color || '#FF6900',
+                backgroundColor:
+                  (reminder.color || 'rgb(255, 105, 0)').slice(0, -1) +
+                  ', 0.3)',
+              }}
             >
-              {reminder.description || 'New reminder'}
+              <div
+                style={{
+                  color: reminder.color || '#FF6900',
+                  fontWeight: 'bold',
+                }}
+              >
+                {reminder.description || 'New reminder'}
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
       </div>
     </Col>
   );
