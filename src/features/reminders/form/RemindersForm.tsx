@@ -74,7 +74,7 @@ export const RemindersForm = () => {
   return (
     <Form as={Container}>
       <Row>
-        <FormGroup as={Col} md="12">
+        <FormGroup as={Col} md="12" style={{ marginTop: '1rem' }}>
           <InputText
             value={form.reminder.value}
             onChange={handleReminderChange}
