@@ -35,16 +35,14 @@
   flex-direction: column;
 }
 
-.add-reminder {
-  position: absolute;
-  padding: 0 10px;
-  bottom: 4px;
-  border-radius: 24px;
-  text-align: center;
-  box-shadow: 2px 2px 3px #999;
-  visibility: hidden;
-}
-
 .calendar-item:hover .add-reminder {
   visibility: visible;
+}
+
+.calendar-item__reminder {
+  opacity: 0.5;
+  border-left: 2px solid;
+  padding-left: 4px;
+  border-top-right-radius: 16px;
+  border-bottom-right-radius: 16px;
 }

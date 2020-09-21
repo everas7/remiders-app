@@ -1,8 +1,9 @@
-import React, {MouseEvent} from 'react';
+import React, { MouseEvent } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { CalendarItem } from './calendar-item/CalendarItem';
 import { CalendarHeader } from './calendar-header/CalendarHeader';
 import { daysInMonth, isWeekend, isSameMonth } from '../../helpers/date-helper';
+import { Reminder } from '../../models/reminder';
 
 const DAYS_PER_ROW = 7;
 
@@ -32,15 +33,20 @@ export const getCalendarMonth = (
 };
 
 interface Props {
-  onItemClick: (event: MouseEvent<HTMLDivElement, globalThis.MouseEvent>, date: Date) => void;
+  onItemClick: (
+    event: MouseEvent<HTMLDivElement, globalThis.MouseEvent>,
+    date: Date
+  ) => void;
+  reminderPreview?: Partial<Reminder>;
 }
 
-export const Calendar: React.FC<Props> = ({ onItemClick }) => {
+export const Calendar: React.FC<Props> = ({ onItemClick, reminderPreview }) => {
   const currentDate = new Date();
   const calendarMonth: CalendarMonth = getCalendarMonth(
     currentDate.getMonth(),
     currentDate.getFullYear()
   );
+    console.log(reminderPreview, 'veamos')
   return (
     <Container fluid>
       <CalendarHeader />
@@ -51,6 +57,11 @@ export const Calendar: React.FC<Props> = ({ onItemClick }) => {
               key={weekIndex + dayIndex}
               inverted={isWeekend(date)}
               disabled={!isSameMonth(date, currentDate)}
+              reminders={
+                reminderPreview?.date?.toDateString() === date.toDateString()
+                  ? [reminderPreview as Reminder]
+                  : []
+              }
               onClick={(e) => onItemClick(e, date)}
             >
               {date.getDate()}
