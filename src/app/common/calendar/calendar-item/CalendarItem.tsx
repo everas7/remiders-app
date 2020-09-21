@@ -32,7 +32,7 @@ export const CalendarItem: React.FC<Props> = ({
             style={{
               borderColor: reminder.color || '#FF6900',
               backgroundColor:
-                (reminder.color || 'rgb(255, 105, 0)').slice(0, -1) + ', 0.5)',
+                (reminder.color || 'rgb(255, 105, 0)').slice(0, -1) + ', 0.3)',
             }}
           >
             <div

@@ -113,7 +113,7 @@ export const RemindersForm: React.FC<Props> = ({ onSubmit }) => {
           <ColorPicker onChange={handleColorChange} color={form.color.value} />
         </FormGroup>
 
-        <Col md="12" className="justify-content-left">
+        <Col md="12" className="justify-content-end">
           <Button variant="primary" type="submit" onClick={handleSubmit}>
             Save
           </Button>
