@@ -13,11 +13,11 @@ export const checkValidators = (value: any, validators: Validators) => {
   }
 
   if (validators.minLength) {
-    valid = valid && value?.length > validators.minLength;
+    valid = valid && value?.length >= validators.minLength;
   }
 
   if (validators.maxLength) {
-    valid = valid && value?.length < validators.maxLength;
+    valid = valid && value?.length <= validators.maxLength;
   }
   return valid;
 };
