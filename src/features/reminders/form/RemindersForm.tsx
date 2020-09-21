@@ -3,7 +3,9 @@ import { Form, Container, Row, Col, FormGroup } from 'react-bootstrap';
 import { InputText } from '../../../app/common/input-text/InputText';
 import { InputSelect } from '../../../app/common/input-select/InputSelect';
 import { InputTime } from '../../../app/common/input-time/InputTime';
+import { ColorPicker } from '../../../app/common/color-picker/ColorPicker';
 import weatherApi from '../../../app/api/weather-api';
+import { ColorResult } from 'react-color';
 
 export const RemindersForm = () => {
   const cities = weatherApi.Cities.list();
@@ -20,6 +22,10 @@ export const RemindersForm = () => {
       validators: [],
     },
     time: {
+      value: '',
+      valid: false,
+    },
+    color: {
       value: '',
       valid: false,
     },
@@ -55,6 +61,16 @@ export const RemindersForm = () => {
     });
   };
 
+  const handleColorChange = (color: ColorResult) => {
+    setForm({
+      ...form,
+      color: {
+        ...form.color,
+        value: color.hex,
+      },
+    });
+  };
+
   return (
     <Form as={Container}>
       <Row>
@@ -77,10 +93,10 @@ export const RemindersForm = () => {
           />
         </FormGroup>
         <FormGroup as={Col} md="12">
-          <InputTime
-            onChange={handleTimeChange}
-            value={form.time.value}
-          />
+          <InputTime onChange={handleTimeChange} value={form.time.value} />
+        </FormGroup>
+        <FormGroup as={Col} md="12">
+          <ColorPicker onChange={handleColorChange} color={form.color.value} />
         </FormGroup>
       </Row>
     </Form>
