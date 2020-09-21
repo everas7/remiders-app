@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux';
 import { remindersListSelector } from '../../app/store/features/reminders';
 import { useDispatch } from 'react-redux';
 import { addReminder } from '../../app/store/features/reminders';
+import weatherApi from '../../app/api/weather-api';
 
 export const Reminders = () => {
   const [show, setShow] = useState(false);
@@ -26,7 +27,7 @@ export const Reminders = () => {
       setTarget(event.currentTarget);
       setReminderPreview({
         date,
-        time: '23:59'
+        time: '23:59',
       });
     }
   };
@@ -37,8 +38,18 @@ export const Reminders = () => {
     setReminderPreview(undefined);
   };
 
-  const handleSubmit = (reminder: Partial<Reminder>) => {
-    dispatch(addReminder({ ...reminder as Reminder, date: reminderPreview?.date! }));
+  const handleSubmit = async (reminder: Partial<Reminder>) => {
+    const forecasts = await weatherApi.Weather.getForecastByCity(
+      reminder.city!
+    );
+    reminder.weather = forecasts?.daily?.filter(
+      (w: any) =>
+        new Date(w.dt).toDateString() === reminderPreview?.date?.toDateString()
+    )[0]?.weather[0]?.description;
+      console.log(reminder, 'veamos')
+    dispatch(
+      addReminder({ ...(reminder as Reminder), date: reminderPreview?.date! })
+    );
     handleClose();
   };
 
