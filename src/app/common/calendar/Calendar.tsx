@@ -46,6 +46,7 @@ interface Props {
   ) => void;
   reminderPreview?: Partial<Reminder>;
   reminders: Reminder[];
+  onRemoveMultipleReminders: (reminders: Reminder[]) => void;
 }
 
 export const Calendar: React.FC<Props> = ({
@@ -53,6 +54,7 @@ export const Calendar: React.FC<Props> = ({
   onReminderClick,
   reminderPreview,
   reminders,
+  onRemoveMultipleReminders
 }) => {
   const [currentDate, setCurrentDate] = useState(new Date());
   const calendarMonth: CalendarMonth = getCalendarMonth(
@@ -84,6 +86,7 @@ export const Calendar: React.FC<Props> = ({
                 key={weekIndex + dayIndex}
                 inverted={isWeekend(date)}
                 disabled={!isSameMonth(date, currentDate)}
+                onRemoveAll={onRemoveMultipleReminders}
                 reminders={
                   reminderPreview?.date?.toDateString() === date.toDateString()
                     ? [

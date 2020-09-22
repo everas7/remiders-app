@@ -1,6 +1,7 @@
 import React, { MouseEvent } from 'react';
 import './CalendarItem.css';
 import { Col, Button } from 'react-bootstrap';
+import { X } from 'react-bootstrap-icons';
 import { Reminder } from '../../../models/reminder';
 
 interface Props {
@@ -11,6 +12,7 @@ interface Props {
     event: MouseEvent<HTMLDivElement, globalThis.MouseEvent>,
     reminder: Reminder
   ) => void;
+  onRemoveAll: (reminders: Reminder[]) => void;
   reminders?: Reminder[];
 }
 
@@ -20,6 +22,7 @@ export const CalendarItem: React.FC<Props> = ({
   disabled = false,
   onClick,
   onClickReminder,
+  onRemoveAll,
   reminders = [],
 }) => {
   return (
@@ -29,7 +32,19 @@ export const CalendarItem: React.FC<Props> = ({
         disabled ? 'calendar-item--disabled' : ''
       }`}
     >
-      <div className="calendar-item__header">{children}</div>
+      <div className="calendar-item__header">
+        <div>{children}</div>
+        {reminders.length ? (
+          <X
+            onClick={(e) => {
+              e.stopPropagation();
+              onRemoveAll(reminders);
+            }}
+            className="calendar-item__x-icon"
+            size={25}
+          />
+        ) : null}
+      </div>
       <div className="calendar-item__content">
         {reminders
           .sort(

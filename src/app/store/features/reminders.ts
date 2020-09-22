@@ -16,7 +16,13 @@ export const updateReminder = (reminder: Reminder) => {
   return typedAction('reminders/UPDATE_REMINDER', { reminder });
 };
 
-type ReminderAction = ReturnType<typeof addReminder | typeof updateReminder>;
+export const deleteMultipleReminders = (reminders: Reminder[]) => {
+  return typedAction('reminders/DELETE_MULTIPLE_REMINDERS', { reminders });
+};
+
+type ReminderAction = ReturnType<
+  typeof addReminder | typeof updateReminder | typeof deleteMultipleReminders
+>;
 
 export function remindersReducer(
   state = initialState,
@@ -35,6 +41,15 @@ export function remindersReducer(
           reminder.date === action.payload.reminder.date
             ? action.payload.reminder
             : reminder
+        ),
+      };
+    case 'reminders/DELETE_MULTIPLE_REMINDERS':
+      return {
+        ...state,
+        list: state.list.filter(
+          (reminder) =>
+            !action.payload.reminders.filter((apr) => apr.date === reminder.date)
+              .length
         ),
       };
     default:

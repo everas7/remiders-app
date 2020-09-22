@@ -28,15 +28,13 @@
   font-weight: bold;
   color:#8C8D91;
   cursor: default;
+  justify-content: space-between;
+  display: flex;
 }
 
 .calendar-item__content {
   flex: 1;
   flex-direction: column;
-}
-
-.calendar-item:hover .add-reminder {
-  visibility: visible;
 }
 
 .calendar-item__reminder {
@@ -48,4 +46,16 @@
   border-top-right-radius: 16px;
   border-bottom-right-radius: 16px;
   word-break: break-all;
+  cursor: pointer;
+}
+
+
+.calendar-item__x-icon {
+  margin-top: 2px;
+  visibility: hidden;
+}
+
+.calendar-item:hover .calendar-item__x-icon {
+  visibility: visible;
+  cursor: pointer;
 }
