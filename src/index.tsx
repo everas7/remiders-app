@@ -8,14 +8,9 @@ import { Router } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 import * as serviceWorker from './serviceWorker';
 import { ScrollToTop } from './app/layout/ScrollToTop';
-import { rootReducer } from './app/store';
+import { store } from './app/store';
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware, compose } from 'redux';
-import thunk from 'redux-thunk';
-
 export const history = createBrowserHistory();
-
-const store = createStore(rootReducer, compose(applyMiddleware(thunk)));
 
 ReactDOM.render(
   <Provider store={store}>

@@ -145,6 +145,7 @@ export const RemindersForm: React.FC<Props> = ({ onSubmit, reminder }) => {
       <Row>
         <FormGroup as={Col} md="12" style={{ marginTop: '1rem' }}>
           <InputText
+            id="description"
             value={form.controls.description.value}
             onChange={handleDescriptionChange}
             maxCharacters={form.controls.description.validators.maxLength}
@@ -161,12 +162,14 @@ export const RemindersForm: React.FC<Props> = ({ onSubmit, reminder }) => {
             value={form.controls.city.value as any}
             onChange={handleCityChange}
             placeholder="City"
+            id="city"
           />
         </FormGroup>
         <FormGroup as={Col} md="12">
           <InputTime
             onChange={handleTimeChange}
             value={form.controls.time.value}
+            id="time"
           />
         </FormGroup>
         <FormGroup as={Col} md="12">
@@ -182,6 +185,7 @@ export const RemindersForm: React.FC<Props> = ({ onSubmit, reminder }) => {
             type="submit"
             disabled={!form.valid}
             onClick={handleSubmit}
+            id="reminder-submit"
           >
             Save
           </Button>
