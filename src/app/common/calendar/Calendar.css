@@ -1,8 +1,12 @@
 .calendar-controls-area {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-    color: #8C8D91;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  color: #8c8d91;
+}
+
+.dark-mode .calendar-controls-area {
+  color: #ffffff;
 }

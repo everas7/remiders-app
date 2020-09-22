@@ -1,12 +1,13 @@
 import React, { useContext } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import { Navbar, Nav, Container } from 'react-bootstrap';
+import { DarkModeToggle } from './DarkModeToggle';
 
 export function NavBar() {
   return (
     <div>
-      <Navbar expand="md" variant="dark" className="navbar__container">
-        <Container>
+      <Navbar expand="md" className="navbar__container">
+        <Container className="justify-content-between">
           <Navbar.Brand className="pointer">
             <img
               src="/assets/logo.png"
@@ -15,6 +16,7 @@ export function NavBar() {
             />
             Reminders App
           </Navbar.Brand>
+          <DarkModeToggle />
         </Container>
       </Navbar>
     </div>

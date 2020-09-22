@@ -14,6 +14,7 @@ import {
 import { useDispatch } from 'react-redux';
 import { addReminder } from '../../app/store/features/reminders';
 import weatherApi from '../../app/api/weather-api';
+import './Reminders.css';
 
 export const Reminders = () => {
   const [show, setShow] = useState(false);
