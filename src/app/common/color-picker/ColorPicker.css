@@ -1,0 +1,17 @@
+.twitter-picker {
+  border: unset !important;
+  box-shadow: unset !important;
+  width: 240px !important;
+}
+
+.twitter-picker div:not(:last-child) {
+  display: none;
+}
+
+.twitter-picker div:last-child {
+  padding: 0 !important;
+}
+
+.twitter-picker div:last-child > div {
+  display: none !important;
+}

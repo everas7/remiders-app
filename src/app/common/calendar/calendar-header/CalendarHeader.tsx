@@ -7,8 +7,8 @@ import { WEEK_DAYS } from './constants';
 export const CalendarHeader = () => {
   return (
     <Row className="calendar-header__container">
-      {WEEK_DAYS.map((dayName) => (
-        <Col>{dayName}</Col>
+      {WEEK_DAYS.map((dayName, index) => (
+        <Col key={index}>{dayName}</Col>
       ))}
     </Row>
   );

@@ -1,6 +1,7 @@
 .calendar-header__container {
-  background-color: #07689f;
-  color: #fff;
+  color: #BEBFC7;
   text-align: center;
   font-weight: bold;
+  text-transform: uppercase;
+  cursor: default;
 }
