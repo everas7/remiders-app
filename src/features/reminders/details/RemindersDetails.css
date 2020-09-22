@@ -1,7 +1,17 @@
+.reminder-details__header-container {
+  display: flex;
+  justify-content: space-between;
+}
+
 .reminder-details__header {
-    margin-bottom: 4px
+  margin-bottom: 4px;
 }
 
 .reminder-details__content {
-    margin-top: 20px
+  margin-top: 20px;
+}
+
+.reminder-details__edit-button {
+  height: 30px;
+  padding: 0 10px;
 }

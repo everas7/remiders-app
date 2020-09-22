@@ -1,22 +1,33 @@
 import React from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col, Button } from 'react-bootstrap';
 import { Reminder } from '../../../app/models/reminder';
 import moment from 'moment';
 import './RemindersDetails.css';
 
 interface Props {
   reminder: Reminder;
+  onClickEdit: () => void;
 }
 
-export const RemindersDetails: React.FC<Props> = ({ reminder }) => {
+export const RemindersDetails: React.FC<Props> = ({
+  reminder,
+  onClickEdit,
+}) => {
   return (
     <Container>
       <Row>
-        <Col md="12" className="reminder-details__header" as="h4">
-          {reminder.description}
-        </Col>
-        <Col md="12" className="reminder-details__subheader">
-          {reminder.city.city}
+        <Col md="12" className="reminder-details__header-container">
+          <div>
+            <h4 className="reminder-details__header">{reminder.description}</h4>
+            {reminder.city.city}
+          </div>
+          <Button
+            variant="info"
+            className="reminder-details__edit-button"
+            onClick={onClickEdit}
+          >
+            Edit
+          </Button>
         </Col>
         <Col md="12" className="reminder-details__content">
           <div>
