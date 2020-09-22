@@ -10,8 +10,16 @@
   background-color: #202225;
 }
 
-.calendar-item:not(:last-child) {
+.calendar-item{
   border-right: 0.5px #f0f3f9 solid;
+}
+
+.calendar-item:first-child {
+  border-left: 0.5px #f0f3f9 solid;
+}
+
+.calendar-item.last-row{
+  border-bottom: 0.5px #f0f3f9 solid;
 }
 
 .calendar-item--inverted {

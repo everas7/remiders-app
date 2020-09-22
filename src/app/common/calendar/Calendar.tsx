@@ -90,6 +90,7 @@ export const Calendar: React.FC<Props> = ({
                 disabled={!isSameMonth(date, currentDate)}
                 onRemoveAll={onRemoveMultipleReminders}
                 onRemove={onRemoveReminder}
+                className={weekIndex === calendarMonth.length -1? 'last-row' : ''}
                 reminders={
                   reminderPreview?.date?.toDateString() === date.toDateString()
                     ? [

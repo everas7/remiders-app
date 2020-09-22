@@ -15,6 +15,7 @@ interface Props {
   onRemoveAll: (reminders: Reminder[]) => void;
   onRemove: (reminder: Reminder) => void;
   reminders?: Reminder[];
+  className?: string;
 }
 
 export const CalendarItem: React.FC<Props> = ({
@@ -26,13 +27,14 @@ export const CalendarItem: React.FC<Props> = ({
   onRemoveAll,
   onRemove,
   reminders = [],
+  className,
 }) => {
   return (
     <Col
       onClick={onClick}
       className={`calendar-item ${inverted ? 'calendar-item--inverted' : ''} ${
         disabled ? 'calendar-item--disabled' : ''
-      }`}
+      } ${className}`}
     >
       <div className="calendar-item__header">
         <div>{children}</div>
@@ -77,14 +79,16 @@ export const CalendarItem: React.FC<Props> = ({
                 className="calendar-item__reminder-content"
               >
                 {reminder.description || 'New reminder'}
-                {reminder.city && <X
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    onRemove(reminder);
-                  }}
-                  className="calendar-item__reminder-x-icon"
-                  size={25}
-                />}
+                {reminder.city && (
+                  <X
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      onRemove(reminder);
+                    }}
+                    className="calendar-item__reminder-x-icon"
+                    size={25}
+                  />
+                )}
               </div>
             </div>
           ))}
