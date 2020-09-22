@@ -8,14 +8,17 @@ import { Router } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 import * as serviceWorker from './serviceWorker';
 import { ScrollToTop } from './app/layout/ScrollToTop';
-
+import { store } from './app/store';
+import { Provider } from 'react-redux';
 export const history = createBrowserHistory();
 
 ReactDOM.render(
+  <Provider store={store}>
     <Router history={history}>
       <ScrollToTop />
       <App />
-    </Router>,
+    </Router>
+  </Provider>,
   document.getElementById('root')
 );
 
