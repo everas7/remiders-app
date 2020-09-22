@@ -11,10 +11,15 @@ import { checkValidators } from '../../../app/helpers/validation-helper';
 
 interface Props {
   onSubmit: (reminder: Partial<Reminder>) => void;
+  onColorChange: (color: string) => void;
   reminder?: Reminder;
 }
 
-export const RemindersForm: React.FC<Props> = ({ onSubmit, reminder }) => {
+export const RemindersForm: React.FC<Props> = ({
+  onSubmit,
+  reminder,
+  onColorChange,
+}) => {
   const cities = weatherApi.Cities.list();
 
   const [form, setForm] = useState({
@@ -128,6 +133,7 @@ export const RemindersForm: React.FC<Props> = ({ onSubmit, reminder }) => {
       },
       valid: checkFormValidity('color'),
     });
+    onColorChange(`rgb(${color.rgb.r},${color.rgb.g},${color.rgb.b})`);
   };
 
   const handleSubmit = () => {
