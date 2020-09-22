@@ -1,6 +1,6 @@
 import React, { useState, useRef, MouseEvent } from 'react';
 import { Calendar } from '../../app/common/calendar/Calendar';
-import { Modal, Overlay, Popover } from 'react-bootstrap';
+import { Overlay, Popover } from 'react-bootstrap';
 import { RemindersForm } from './form/RemindersForm';
 import { RemindersDetails } from './details/RemindersDetails';
 import { Reminder } from '../../app/models/reminder';

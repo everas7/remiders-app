@@ -1,5 +1,5 @@
 import React, { MouseEvent, useState } from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row } from 'react-bootstrap';
 import { ArrowRight, ArrowLeft } from 'react-bootstrap-icons';
 import { CalendarItem } from './calendar-item/CalendarItem';
 import { CalendarHeader } from './calendar-header/CalendarHeader';

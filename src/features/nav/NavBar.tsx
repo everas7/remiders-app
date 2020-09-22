@@ -1,6 +1,5 @@
-import React, { useContext } from 'react';
-import { NavLink, Link } from 'react-router-dom';
-import { Navbar, Nav, Container } from 'react-bootstrap';
+import React from 'react';
+import { Navbar, Container } from 'react-bootstrap';
 import { DarkModeToggle } from './DarkModeToggle';
 
 export function NavBar() {

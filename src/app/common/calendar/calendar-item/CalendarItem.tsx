@@ -1,6 +1,6 @@
 import React, { MouseEvent } from 'react';
 import './CalendarItem.css';
-import { Col, Button } from 'react-bootstrap';
+import { Col } from 'react-bootstrap';
 import { X } from 'react-bootstrap-icons';
 import { Reminder } from '../../../models/reminder';
 
