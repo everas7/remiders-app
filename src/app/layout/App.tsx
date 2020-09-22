@@ -15,7 +15,7 @@ function App() {
         render={() => (
           <>
             <NavBar />
-            <div style={{ marginTop: '7em' }} className="container">
+            <div style={{ marginTop: '4.5em' }} className="container">
               <Switch>
                 <Route exact path="/reminders" component={Reminders} />
                 <Route component={Reminders} />
