@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Col, FormControlProps } from 'react-bootstrap';
+import { Form, FormControlProps } from 'react-bootstrap';
 
 interface Props extends FormControlProps {
   placeholder: string;

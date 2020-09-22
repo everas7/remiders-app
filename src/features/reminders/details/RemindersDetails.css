@@ -15,3 +15,11 @@
   height: 30px;
   padding: 0 10px;
 }
+
+.dark-mode .reminder-details__header-container {
+  color: #ffffff;
+}
+
+.dark-mode .reminder-details__content {
+  color: #ffffff;
+}

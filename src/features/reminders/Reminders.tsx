@@ -1,6 +1,6 @@
 import React, { useState, useRef, MouseEvent } from 'react';
 import { Calendar } from '../../app/common/calendar/Calendar';
-import { Modal, Overlay, Popover } from 'react-bootstrap';
+import { Overlay, Popover } from 'react-bootstrap';
 import { RemindersForm } from './form/RemindersForm';
 import { RemindersDetails } from './details/RemindersDetails';
 import { Reminder } from '../../app/models/reminder';
@@ -8,10 +8,13 @@ import { useSelector } from 'react-redux';
 import {
   remindersListSelector,
   updateReminder,
+  deleteMultipleReminders,
+  deleteReminder,
 } from '../../app/store/features/reminders';
 import { useDispatch } from 'react-redux';
 import { addReminder } from '../../app/store/features/reminders';
 import weatherApi from '../../app/api/weather-api';
+import './Reminders.css';
 
 export const Reminders = () => {
   const [show, setShow] = useState(false);
@@ -82,11 +85,25 @@ export const Reminders = () => {
     handleClose();
   };
 
+  const handleRemoveMultipleReminders = (
+    reminders: Reminder[]
+  ) => {
+    dispatch(deleteMultipleReminders(reminders));
+  };
+
+  const handleRemoveReminder = (
+    reminder: Reminder
+  ) => {
+    dispatch(deleteReminder(reminder));
+  };
+
   return (
     <div ref={ref}>
       <Calendar
         onItemClick={handleCalendarItemClick}
         onReminderClick={handleCalendarReminderClick}
+        onRemoveMultipleReminders={handleRemoveMultipleReminders}
+        onRemoveReminder={handleRemoveReminder}
         reminderPreview={reminderPreview}
         reminders={reminders}
       />
