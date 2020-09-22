@@ -9,6 +9,7 @@ import {
   remindersListSelector,
   updateReminder,
   deleteMultipleReminders,
+  deleteReminder,
 } from '../../app/store/features/reminders';
 import { useDispatch } from 'react-redux';
 import { addReminder } from '../../app/store/features/reminders';
@@ -89,12 +90,19 @@ export const Reminders = () => {
     dispatch(deleteMultipleReminders(reminders));
   };
 
+  const handleRemoveReminder = (
+    reminder: Reminder
+  ) => {
+    dispatch(deleteReminder(reminder));
+  };
+
   return (
     <div ref={ref}>
       <Calendar
         onItemClick={handleCalendarItemClick}
         onReminderClick={handleCalendarReminderClick}
         onRemoveMultipleReminders={handleRemoveMultipleReminders}
+        onRemoveReminder={handleRemoveReminder}
         reminderPreview={reminderPreview}
         reminders={reminders}
       />

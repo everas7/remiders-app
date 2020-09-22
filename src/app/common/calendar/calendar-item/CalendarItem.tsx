@@ -13,6 +13,7 @@ interface Props {
     reminder: Reminder
   ) => void;
   onRemoveAll: (reminders: Reminder[]) => void;
+  onRemove: (reminder: Reminder) => void;
   reminders?: Reminder[];
 }
 
@@ -23,6 +24,7 @@ export const CalendarItem: React.FC<Props> = ({
   onClick,
   onClickReminder,
   onRemoveAll,
+  onRemove,
   reminders = [],
 }) => {
   return (
@@ -72,8 +74,17 @@ export const CalendarItem: React.FC<Props> = ({
                   color: reminder.color || '#FF6900',
                   fontWeight: 'bold',
                 }}
+                className="calendar-item__reminder-content"
               >
                 {reminder.description || 'New reminder'}
+                {reminder.city && <X
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onRemove(reminder);
+                  }}
+                  className="calendar-item__reminder-x-icon"
+                  size={25}
+                />}
               </div>
             </div>
           ))}

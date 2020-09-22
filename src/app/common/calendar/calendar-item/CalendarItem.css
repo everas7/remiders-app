@@ -3,13 +3,12 @@
   display: flex;
   flex-direction: column;
   min-height: 120px;
-  border-top: 0.5px #F0F3F9 solid;
+  border-top: 0.5px #f0f3f9 solid;
 }
 
 .calendar-item:not(:last-child) {
-  border-right: 0.5px #F0F3F9 solid;
+  border-right: 0.5px #f0f3f9 solid;
 }
-
 
 .calendar-item--inverted {
   background-color: #ffffff;
@@ -20,13 +19,13 @@
 }
 
 .calendar-item--disabled .calendar-item__header {
-  color: #BCBFC5;
+  color: #bcbfc5;
 }
 
 .calendar-item__header {
   height: 30px;
   font-weight: bold;
-  color:#8C8D91;
+  color: #8c8d91;
   cursor: default;
   justify-content: space-between;
   display: flex;
@@ -49,7 +48,6 @@
   cursor: pointer;
 }
 
-
 .calendar-item__x-icon {
   margin-top: 2px;
   visibility: hidden;
@@ -58,4 +56,18 @@
 .calendar-item:hover .calendar-item__x-icon {
   visibility: visible;
   cursor: pointer;
+}
+
+.calendar-item__reminder-content {
+  display: flex;
+  justify-content: space-between;
+}
+
+.calendar-item__reminder-x-icon {
+  margin-top: 2px;
+  visibility: hidden;
+}
+
+.calendar-item__reminder:hover .calendar-item__reminder-x-icon {
+  visibility: visible;
 }

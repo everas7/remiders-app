@@ -20,8 +20,15 @@ export const deleteMultipleReminders = (reminders: Reminder[]) => {
   return typedAction('reminders/DELETE_MULTIPLE_REMINDERS', { reminders });
 };
 
+export const deleteReminder = (reminder: Reminder) => {
+  return typedAction('reminders/DELETE_REMINDER', { reminder });
+};
+
 type ReminderAction = ReturnType<
-  typeof addReminder | typeof updateReminder | typeof deleteMultipleReminders
+  | typeof addReminder
+  | typeof updateReminder
+  | typeof deleteMultipleReminders
+  | typeof deleteReminder
 >;
 
 export function remindersReducer(
@@ -48,8 +55,16 @@ export function remindersReducer(
         ...state,
         list: state.list.filter(
           (reminder) =>
-            !action.payload.reminders.filter((apr) => apr.date === reminder.date)
-              .length
+            !action.payload.reminders.filter(
+              (apr) => apr.date === reminder.date
+            ).length
+        ),
+      };
+    case 'reminders/DELETE_REMINDER':
+      return {
+        ...state,
+        list: state.list.filter(
+          (reminder) => action.payload.reminder.date !== reminder.date
         ),
       };
     default:
