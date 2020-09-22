@@ -2,8 +2,13 @@
 
 Reminders App is a web application that allows users to set reminders for specific dates with important information such as time and city. It also provide weather information to the user based on the date and city of each reminder.
 
-# Stack
-- Front-end: ReactJs
+# Features
+- Add reminders
+- Edit reminders
+- Delete single/all reminders on a day
+- Switch months
+- Weather forecast up to 7 days ahead of current day
+- Dark mode
 
 # Anatomy
 
@@ -18,23 +23,26 @@ WebApp Structure
   - store
 - features
   - reminders
-  - home
   - nav
 
 # Setting Up Project
 ## Environment Variables
 
+To be able to have the weather forecast functionality an Open Weather account api key is needed. Please add this variable to a .env file.
+
+```
+REACT_APP_WEATHER_API_KEY=213asdnasd1f
+```
+
 # Installing Dependencies
 
-Web App
 ```
-npm start
+npm install
 ```
 
 # Running Project
 
 ```
-cd web-app
 npm start
 ```
 
