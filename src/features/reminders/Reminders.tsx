@@ -27,6 +27,10 @@ export const Reminders = () => {
   const reminders = useSelector(remindersListSelector);
   const dispatch = useDispatch();
 
+  const handlePreviewColorChange = (color: string) => {
+    setReminderPreview({ ...reminderPreview, color });
+  };
+
   const handleCalendarItemClick = (
     event: MouseEvent<HTMLDivElement, globalThis.MouseEvent>,
     date: Date
@@ -85,15 +89,11 @@ export const Reminders = () => {
     handleClose();
   };
 
-  const handleRemoveMultipleReminders = (
-    reminders: Reminder[]
-  ) => {
+  const handleRemoveMultipleReminders = (reminders: Reminder[]) => {
     dispatch(deleteMultipleReminders(reminders));
   };
 
-  const handleRemoveReminder = (
-    reminder: Reminder
-  ) => {
+  const handleRemoveReminder = (reminder: Reminder) => {
     dispatch(deleteReminder(reminder));
   };
 
@@ -126,6 +126,7 @@ export const Reminders = () => {
             ) : (
               <RemindersForm
                 reminder={currentReminder}
+                onColorChange={handlePreviewColorChange}
                 onSubmit={handleSubmit}
               />
             )}
