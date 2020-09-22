@@ -9,6 +9,7 @@ Reminders App is a web application that allows users to set reminders for specif
 - Switch months
 - Weather forecast up to 7 days ahead of current day
 - Dark mode
+- Unit test
 
 # Anatomy
 
@@ -45,6 +46,13 @@ npm install
 ```
 npm start
 ```
+
+# Running Tests
+
+```
+npm test
+```
+
 
 # Additional Notes
 TODO
