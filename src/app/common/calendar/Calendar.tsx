@@ -37,12 +37,17 @@ interface Props {
     event: MouseEvent<HTMLDivElement, globalThis.MouseEvent>,
     date: Date
   ) => void;
+  onReminderClick: (
+    event: MouseEvent<HTMLDivElement, globalThis.MouseEvent>,
+    reminder: Reminder
+  ) => void;
   reminderPreview?: Partial<Reminder>;
   reminders: Reminder[];
 }
 
 export const Calendar: React.FC<Props> = ({
   onItemClick,
+  onReminderClick,
   reminderPreview,
   reminders,
 }) => {
@@ -75,6 +80,7 @@ export const Calendar: React.FC<Props> = ({
                     )
               }
               onClick={(e) => onItemClick(e, date)}
+              onClickReminder={onReminderClick}
             >
               {date.getDate()}
             </CalendarItem>

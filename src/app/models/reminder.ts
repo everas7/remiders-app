@@ -1,7 +1,10 @@
+import { City } from "./city";
+
 export interface Reminder {
   description: string;
-  city: string;
+  city: City;
   date: Date;
   time: string;
   color: string;
+  weather?: string;
 }

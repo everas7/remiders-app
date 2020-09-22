@@ -51,7 +51,7 @@ export const RemindersForm: React.FC<Props> = ({ onSubmit }) => {
       ...form,
       city: {
         ...form.city,
-        value: value,
+        value
       },
     });
   };
@@ -98,6 +98,7 @@ export const RemindersForm: React.FC<Props> = ({ onSubmit }) => {
         <FormGroup as={Col} md="12">
           <InputSelect
             options={cities.map((city: any) => ({
+              ...city,
               value: city.city + city.state,
               label: city.city,
             }))}
