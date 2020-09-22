@@ -5,6 +5,7 @@ import './InputTime.css';
 interface Props {
   value: Date | string;
   onChange: (value: string) => void;
+  id?: string;
 }
 
 export const InputTime: React.FC<Props> = ({ ...props }) => {
